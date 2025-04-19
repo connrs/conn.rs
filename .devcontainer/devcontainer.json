@@ -1,22 +1,42 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-  "name": "Haskell (Community)",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  // Configure tool-specific properties.
-  "customizations": {
-    // Configure properties specific to VS Code.
-    "vscode": {
-      // Set *default* container specific settings.json values on container create.
-      "settings": {
-        "haskell.manageHLS": "GHCup"
-      },
-      // Add the IDs of extensions you want installed when the container is created.
-      "extensions": [
-        "haskell.haskell"
-      ]
-    }
-  },
-  // Comment out to connect as root instead. To add a non-root user, see: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode"
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/haskell:latest": {
+			"downgradeGhcToSupportHls": false,
+			"installHLS": true,
+			"installStack": true,
+			"installStackGHCupHook": true,
+			"adjustBash": true,
+			"ghcVersion": "9.10.1",
+			"cabalVersion": "3.12.1.0",
+			"globalPackages": ""
+		},
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
+			"command": "apt update && DEBIAN_FRONTEND=noninteractive apt -y install libgmp-dev && echo \\\"cabal install pandoc hspec cabal-gild hspec-discover fourmolu\\\" | sudo -iu $_REMOTE_USER"
+		}
+	},
+	"overrideFeatureInstallOrder": [
+		"ghcr.io/devcontainers-contrib/features/haskell",
+		"ghcr.io/devcontainers-contrib/features/bash-command"
+	],
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"haskell.manageHLS": "GHCup"
+			},
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"haskell.haskell",
+				"justusadam.language-haskell",
+				"jcanero.hoogle-vscode"
+			]
+		}
+	}
 }

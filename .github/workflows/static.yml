@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     types:
       - opened
@@ -17,7 +18,7 @@ jobs:
     strategy:
       matrix:
         cabal: ["3.12"]
-        ghc: ["9.4.5"]
+        ghc: ["9.10.1"]
     steps:
       - uses: actions/checkout@v4
       - uses: haskell-actions/setup@v2
@@ -47,5 +48,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages # The branch the action should deploy to.
+          folder: docs # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch
+      - name: Deploy Dev 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: github.ref == 'refs/heads/dev'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: dev-gh-pages # The branch the action should deploy to.
           folder: docs # The folder the action should deploy.
           clean: true # Automatically remove deleted files from the deploy branch

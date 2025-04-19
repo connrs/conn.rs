@@ -1,0 +1,19 @@
+name: blog
+version: 0.1.0.0
+build-type: Simple
+cabal-version: >= 1.10
+
+executable site
+  main-is: site.hs
+  build-depends:
+    base ==4.*,
+    filepath,
+    hakyll ==4.16.*,
+    pandoc
+
+  ghc-options:
+    -threaded
+    -rtsopts
+    -with-rtsopts=-N
+
+  default-language: GHC2021
