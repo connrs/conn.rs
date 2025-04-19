@@ -13,7 +13,7 @@ import Text.Pandoc.Options
 config :: Configuration
 config =
   defaultConfiguration
-    { destinationDirectory = "www"
+    { destinationDirectory = "docs"
     }
 
 main :: IO ()
