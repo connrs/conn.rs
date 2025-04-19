@@ -6,6 +6,26 @@
     {
       "label": "Rebuild site",
       "type": "shell",
+      "command": "cabal build && cabal exec site rebuild",
+      "group": {
+        "kind": "build",
+        "isDefault": true,
+        "isTestCommand": true
+      },
+      "detail": "Rebuild the site",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Quick rebuild site",
+      "type": "shell",
       "command": "cabal exec site rebuild",
       "group": {
         "kind": "build",

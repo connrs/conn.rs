@@ -34,21 +34,21 @@ main = hakyllWith config $ do
     route idRoute
     compile copyFileCompiler
 
-  match (fromList ["about.markdown", "contact.markdown", "404.markdown"]) $ do
+  match (fromList ["about.markdown", "404.markdown"]) $ do
     route $ setExtension "html"
-    compile
-      $ myPandocCompiler -- pandocCompiler
-      >>= loadAndApplyTemplate "templates/default.html" defaultContext
-      >>= relativizeUrls
+    compile $
+      myPandocCompiler -- pandocCompiler
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        >>= relativizeUrls
 
   match "posts/*" $ do
     route $ setExtension "html"
-    compile
-      $ myPandocCompiler -- pandocCompiler
-      >>= saveSnapshot "content"
-      >>= loadAndApplyTemplate "templates/post.html" postCtx
-      >>= loadAndApplyTemplate "templates/default-post.html" postCtx
-      >>= relativizeUrls
+    compile $
+      myPandocCompiler -- pandocCompiler
+        >>= saveSnapshot "content"
+        >>= loadAndApplyTemplate "templates/post.html" postCtx
+        >>= loadAndApplyTemplate "templates/default-post.html" postCtx
+        >>= relativizeUrls
 
   {-match "CNAME" $ do
       route   idRoute
