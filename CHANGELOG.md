@@ -1,5 +1,5 @@
-# Revision history for MedicineToDo
+# Revision history for blog-dev
 
-## 0.1.0.0 -- YYYY-mm-dd
+## 1.0.0.0 -- 2025-04-18
 
-* First version. Released on an unsuspecting world.
+* Attempting GH Pages deployment - needs gh-pages almost there...
